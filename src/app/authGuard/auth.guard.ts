@@ -4,11 +4,12 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 
 const helper = new JwtHelperService();
+if(localStorage.getItem('currentUser')){
+  const decodedToken = helper.decodeToken(localStorage.getItem('currentUser'));
+  const expirationDate = helper.getTokenExpirationDate(localStorage.getItem('currentUser'));
 
-const decodedToken = helper.decodeToken(localStorage.getItem('currentUser'));
-const expirationDate = helper.getTokenExpirationDate(localStorage.getItem('currentUser'));
-const isExpired = helper.isTokenExpired(localStorage.getItem('currentUser'));
-console.log(isExpired,decodedToken,expirationDate);
+  console.log(decodedToken,expirationDate);
+}
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,13 @@ export class AuthGuard implements CanActivate {
   constructor(private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (localStorage.getItem('currentUser') && !isExpired) {
+    if (localStorage.getItem('currentUser') ) {
+      const isExpired = helper.isTokenExpired(localStorage.getItem('currentUser'));
+      if(isExpired){
+        localStorage.removeItem('currentUser');
+        this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
+        return false;
+      }
         // logged in so return true
         return true;
     }
