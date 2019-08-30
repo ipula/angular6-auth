@@ -30,7 +30,7 @@
     "@ng-bootstrap/ng-bootstrap": "2.0.0",
     "@nguniversal/express-engine": "^6.1.0",
     "@nguniversal/module-map-ngfactory-loader": "^6.1.0",
-    "bootstrap": "^4.0.0",
+    "bootstrap": "^4.3.1",
     "core-js": "^2.5.4",
     "express": "^4.16.3",
     "localstorage-polyfill": "^1.0.1",
