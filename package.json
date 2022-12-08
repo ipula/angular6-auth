@@ -32,7 +32,7 @@
     "@nguniversal/module-map-ngfactory-loader": "^6.1.0",
     "bootstrap": "^4.0.0",
     "core-js": "^2.5.4",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "localstorage-polyfill": "^1.0.1",
     "perfect-scrollbar": "1.1.0",
     "rxjs": "^6.0.0",
